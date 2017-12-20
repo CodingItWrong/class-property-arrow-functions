@@ -2,6 +2,7 @@ import {describe, beforeEach, it} from 'mocha';
 import {expect} from 'chai';
 import ES6ClassDeclarations from '../src/ES6ClassDeclarations'
 import ManualBinding from '../src/ManualBinding'
+import PropertyAssignmentOfArrowFunctions from '../src/PropertyAssignmentOfArrowFunctions'
 
 describe('method definition', () => {
   describe('ES6+ class declarations', () => {
@@ -20,6 +21,15 @@ describe('method definition', () => {
 
   describe('manually-bound functions', () => {
     const instance = new ManualBinding('bar')
+
+    it('binds functions to the instance', () => {
+      const foo = instance.foo
+      expect(foo()).to.eq('bar')
+    })
+  })
+
+  describe('property assignment of arrow functions', () => {
+    const instance = new PropertyAssignmentOfArrowFunctions('bar')
 
     it('binds functions to the instance', () => {
       const foo = instance.foo
